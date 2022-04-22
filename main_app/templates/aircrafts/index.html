@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Aircraft List</h1>
+
+{% for aircraft in aircrafts %}
+  <div class="card">
+    <div class="card blue-grey darken-1">
+    <div class="card-content white-text">
+      <span class="card-title ">{{ aircraft.name }}</span>
+      <p>Manufacturer: {{ aircraft.manufacturer }}</p>
+      <p>Description: {{ aircraft.description }}</p>
+      <p>Developed Into | Variant: {{ aircraft.developedInto }}</p>
+      <p>First Flight: {{ aircraft.dob }}</p>
+      <p>Quantity Built: {{ aircraft.built }}</p>
+    </div>
+  </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
