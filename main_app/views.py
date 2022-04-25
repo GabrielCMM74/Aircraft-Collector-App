@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Aircraft
+from .forms import FuelingForm
 # Add the following import
 from django.http import HttpResponse
 
@@ -56,18 +57,41 @@ def aircrafts_index(request):
 
 def aircrafts_detail(request, aircraft_id):
     aircraft = Aircraft.objects.get(id=aircraft_id)
-    return render(request, 'aircrafts/detail.html', { 'aircraft': aircraft })
+    fueling_form = FuelingForm
+    return render(request, 'aircrafts/detail.html', { 'aircraft': aircraft, 'fueling_form': fueling_form })
 # Create your views here.
 class AircraftCreate(CreateView):
-  model = Aircraft
-  fields = '__all__'
-  success_url = '/aircrafts/'
+    model = Aircraft
+    fields = '__all__'
+    success_url = '/aircrafts/'
 
 class AircraftUpdate(UpdateView):
-  model = Aircraft
+    model = Aircraft
   # Let's disallow the renaming of a cat by excluding the name field!
-  fields = ['manufacturer', 'description', 'developedInto', 'built']
+    fields = ['manufacturer', 'description', 'developedInto', 'built']
 
 class AircraftDelete(DeleteView):
-  model = Aircraft
-  success_url = '/aircrafts/'
+    model = Aircraft
+    success_url = '/aircrafts/'
+
+def add_fueling(request, aircraft_id):
+    form = FuelingForm(request.POST)
+
+    if form.is_valid():
+        new_fueling = form.save(commit=False)
+        new_fueling.aircraft_id = aircraft_id
+        new_fueling.save()
+    return redirect('detail', aircraft_id=aircraft_id)
+
+
+
+
+
+
+
+
+
+
+
+
+
