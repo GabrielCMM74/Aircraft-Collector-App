@@ -58,8 +58,9 @@ def aircrafts_index(request):
 
 def aircrafts_detail(request, aircraft_id):
     aircraft = Aircraft.objects.get(id=aircraft_id)
+    services_aircraft_doesnt_have = Service.objects.exclude(id__in = aircraft.services.all().values_list('id'))
     fueling_form = FuelingForm
-    return render(request, 'aircrafts/detail.html', { 'aircraft': aircraft, 'fueling_form': fueling_form })
+    return render(request, 'aircrafts/detail.html', { 'aircraft': aircraft, 'fueling_form': fueling_form, 'services' : services_aircraft_doesnt_have })
 # Create your views here.
 class AircraftCreate(CreateView):
     model = Aircraft
@@ -103,7 +104,10 @@ class ServiceDelete(DeleteView):
   model = Service
   success_url = '/services/'
 
-
+def assoc_service(request, aircraft_id, service_id):
+  # Note that you can pass a toy's id instead of the whole object
+    Aircraft.objects.get(id=aircraft_id).services.add(service_id)
+    return redirect('detail', aircraft_id=aircraft_id)
 
 
 

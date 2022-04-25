@@ -49,6 +49,52 @@
     </table>
   </div>
   </div>
+
+
+  <hr>
+  <div class="row">
+    <div class="col s6">
+      <h3>{{ aircraft.name }}'s Services</h3>
+      {% if aircraft.services.count %}
+        {% for service in aircraft.services.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                A <span style="color: {{ service.color }}">{{ service.color }}</span> {{ service.name }}
+              </span>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>No Services :(</h5>
+      {% endif %}
+    </div>
+    <!-- Available toys will come after this line -->
+    <div class="col s6">
+        <h3>Available Services</h3>
+        {% if services.count %}
+          {% for service in services.all %}
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">
+                  A <span style="color: {{ service.color }}">{{ service.color }}</span> {{ service.name }}
+                </span>
+              </div>
+              <div class="card-action">
+                <form action="{% url 'assoc_service' aircraft.id service.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn">Add</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <h5>{{aircraft.name}} Already Has All Services Available</h5>
+        {% endif %}
+      </div>
+  </div>
+
+
   <script>
     const dateEl = document.getElementById('id_date');
     M.Datepicker.init(dateEl, {

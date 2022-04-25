@@ -33,6 +33,7 @@ class Aircraft(models.Model):
     developedInto = models.CharField(max_length=50)
     dob = models.CharField(max_length=50)
     built = models.IntegerField()
+    services = models.ManyToManyField(Service)
     # new code below
     def __str__(self):
         return self.name
