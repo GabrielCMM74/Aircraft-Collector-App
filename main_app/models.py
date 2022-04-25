@@ -14,6 +14,7 @@ FUELTIMES = (
 # Create your models here.
 class Service(models.Model):
     name = models.CharField(max_length=50)
+    priority = models.CharField(max_length=30)
     color = models.CharField(max_length=20)
 
     def __str__(self):

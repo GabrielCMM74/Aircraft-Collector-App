@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Aircraft
+from django.views.generic import ListView, DetailView
+from .models import Aircraft, Service
 from .forms import FuelingForm
 # Add the following import
 from django.http import HttpResponse
@@ -84,7 +85,23 @@ def add_fueling(request, aircraft_id):
     return redirect('detail', aircraft_id=aircraft_id)
 
 
+class ServiceList(ListView):
+  model = Service
 
+class ServiceDetail(DetailView):
+  model = Service
+
+class ServiceCreate(CreateView):
+  model = Service
+  fields = '__all__'
+
+class ServiceUpdate(UpdateView):
+  model = Service
+  fields = ['name', 'color']
+
+class ServiceDelete(DeleteView):
+  model = Service
+  success_url = '/services/'
 
 
 
