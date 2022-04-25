@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Aircraft
 # Add the following import
 from django.http import HttpResponse
@@ -57,3 +58,16 @@ def aircrafts_detail(request, aircraft_id):
     aircraft = Aircraft.objects.get(id=aircraft_id)
     return render(request, 'aircrafts/detail.html', { 'aircraft': aircraft })
 # Create your views here.
+class AircraftCreate(CreateView):
+  model = Aircraft
+  fields = '__all__'
+  success_url = '/aircrafts/'
+
+class AircraftUpdate(UpdateView):
+  model = Aircraft
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = ['manufacturer', 'description', 'developedInto', 'built']
+
+class AircraftDelete(DeleteView):
+  model = Aircraft
+  success_url = '/aircrafts/'

@@ -14,6 +14,10 @@
       <p>Quantity Built: {{ aircraft.built }}</p>
     </div>
   </div>
+  <div class="card-action">
+    <a href="{% url 'aircrafts_update' aircraft.id %}">Edit</a>
+    <a href="{% url 'aircrafts_delete' aircraft.id %}">Delete</a>
+  </div>
   </div>
 
 {% endblock %}
