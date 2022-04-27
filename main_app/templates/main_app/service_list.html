@@ -5,8 +5,8 @@
 
 {% for service in service_list %}
   <a href="{% url 'services_detail' service.id %}">
-    <div class="card">
-        <div class="card-content">
+    <div class="card red darken-4">
+        <div class="card-content white-text">
             <span class="card-title">{{ service.name }}</span>
             <!-- <p>Color: {{ service.color }}</p>
             <p>Color: {{ service.priority }}</p> -->
