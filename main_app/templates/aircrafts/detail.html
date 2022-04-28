@@ -88,7 +88,6 @@
         <h5>No Services :(</h5>
       {% endif %}
     </div>
-    <!-- Available toys will come after this line -->
     <div class="col s6">
         <h3>Available Services</h3>
         {% if services.count %}
@@ -123,7 +122,6 @@
       autoClose: true
     });
   
-    // add additional JS to initialize select below
     const selectEl = document.getElementById('id_fuel');
     M.FormSelect.init(selectEl);
   </script>

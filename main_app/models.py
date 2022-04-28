@@ -63,4 +63,3 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Photo for aircraft_id: {self.aircraft_id} @{self.url}"
-# a = Aircraft(name="Lockheed Martin F-22 Raptor", manufacturer="Lockheed Martin Aeuronautics | Boeing Defense | Space & Security", description="The aircraft is equipped to operate autonomously in combat over hostile territory, in escort of deep-penetration strike aircraft and in the suppression of enemy airfields.", developedInto="Lockheed Martin X-44 MANTA", dob="September 7, 1997", built=195)

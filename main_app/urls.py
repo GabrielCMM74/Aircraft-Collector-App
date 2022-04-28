@@ -4,7 +4,6 @@ from .models import Aircraft
 from . import views
 
 urlpatterns = [
-    
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('aircrafts/', views.aircrafts_index, name='index'),
@@ -22,5 +21,4 @@ urlpatterns = [
     path('services/<int:pk>/update/', views.ServiceUpdate.as_view(), name='services_update'),
     path('services/<int:pk>/delete/', views.ServiceDelete.as_view(), name='services_delete'),
     path('accounts/signup/', views.signup, name='signup'),
-
 ]
