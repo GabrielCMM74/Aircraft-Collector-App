@@ -28,6 +28,8 @@
 >
 > PostgreSQL
 >
+> AWS S3
+>
 > DTL Templates
 >
 > Django Authentication
